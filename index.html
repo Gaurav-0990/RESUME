@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gaurav Negi — Developer</title>
+<meta name="description" content="Portfolio of Gaurav Negi — Student, Freelancer, Developer"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#05050f;--bg2:#0d0d1f;--bg3:#12122a;
+  --purple:#7c6fff;--purple2:#a78bfa;--blue:#38bdf8;
+  --green:#34d399;--pink:#f472b6;--amber:#fbbf24;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(124,111,255,0.18);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 1.5rem 6rem}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:center;padding:1rem 0;backdrop-filter:blur(14px);background:rgba(5,5,15,0.75);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;gap:2rem;align-items:center}
+.nav-logo{font-family:'Space Mono',monospace;font-size:.85rem;color:var(--purple2);margin-right:1rem;font-weight:700;letter-spacing:1px}
+.nav-inner a{color:var(--muted);font-size:.75rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:color .2s;font-family:'Space Mono',monospace}
+.nav-inner a:hover{color:var(--purple2)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:80px;padding-bottom:40px}
+.avatar-ring{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#7c6fff,#f472b6,#38bdf8);padding:3px;margin:0 auto 1.8rem;animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:700;color:#fff;font-family:'Space Mono',monospace}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:3px;color:var(--purple);text-transform:uppercase;margin-bottom:.8rem}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:.6rem}
+.glow{background:linear-gradient(90deg,var(--purple2),var(--blue),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .tagline{font-family:'Space Mono',monospace;font-size:.82rem;color:var(--muted);letter-spacing:2px;margin-bottom:1.8rem}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:2.2rem}
+.badge{background:rgba(124,111,255,0.1);border:1px solid rgba(124,111,255,0.3);color:var(--purple2);font-size:.7rem;padding:5px 14px;border-radius:20px;letter-spacing:1.5px;text-transform:uppercase;font-family:'Space Mono',monospace}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--purple);color:#fff;border:none;padding:11px 26px;border-radius:9px;font-size:.88rem;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s;font-family:'Space Grotesk',sans-serif;text-decoration:none;display:inline-block}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 28px rgba(124,111,255,0.5)}
+.btn-outline{background:transparent;color:var(--purple2);border:1px solid rgba(124,111,255,0.4);padding:11px 26px;border-radius:9px;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:'Space Grotesk',sans-serif;text-decoration:none;display:inline-block}
+.btn-outline:hover{background:rgba(124,111,255,0.12)}
+.scroll-hint{margin-top:3rem;color:var(--muted);font-size:.72rem;letter-spacing:2px;animation:bounce 2s infinite;font-family:'Space Mono',monospace}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+/* SECTIONS */
+.section{padding:5rem 0 1rem}
+.sec-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:.5rem}
+.sec-title{font-size:1.9rem;font-weight:700;margin-bottom:2rem;color:#fff}
+.divider{height:1px;background:linear-gradient(to right,var(--purple),transparent);margin-bottom:2.5rem;opacity:.3}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.about-stat{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.4rem;text-align:center}
+.stat-num{font-size:2.2rem;font-weight:700;font-family:'Space Mono',monospace;background:linear-gradient(135deg,var(--purple2),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.75rem;color:var(--muted);margin-top:4px;letter-spacing:1px}
+.about-text{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.5rem;grid-column:1/-1;line-height:1.85;color:#94a3b8;font-size:.93rem}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.skill-card{background:var(--bg3);border:1px solid var(--border);border-radius:13px;padding:1.1rem;text-align:center;transition:all .2s;position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,111,255,0.1),transparent);opacity:0;transition:opacity .2s}
+.skill-card:hover{border-color:var(--purple);transform:translateY(-4px)}
+.skill-card:hover::before{opacity:1}
+.skill-icon{font-size:1.9rem;margin-bottom:.5rem}
+.skill-name{font-size:.82rem;font-weight:600;color:var(--text)}
+.skill-bar-wrap{height:3px;background:rgba(255,255,255,0.07);border-radius:2px;margin-top:.6rem;overflow:hidden}
+.skill-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--purple),var(--blue));width:0%;transition:width 1.2s ease}
+
+/* PROJECTS */
+.proj-grid{display:grid;gap:14px}
+.proj-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:all .2s}
+.proj-card:hover{border-color:var(--purple);transform:translateX(5px)}
+.proj-card.featured{border-color:rgba(124,111,255,0.35);background:linear-gradient(135deg,rgba(124,111,255,0.07),var(--bg3))}
+.proj-num{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--purple);background:rgba(124,111,255,0.12);border:1px solid rgba(124,111,255,0.25);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.proj-title{font-size:1rem;font-weight:600;color:#fff;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.proj-desc{font-size:.82rem;color:var(--muted);line-height:1.65}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:.75rem}
+.tag{font-size:.67rem;padding:3px 10px;border-radius:12px;font-family:'Space Mono',monospace;letter-spacing:.5px}
+.tag-purple{background:rgba(124,111,255,0.12);color:var(--purple2);border:1px solid rgba(124,111,255,0.2)}
+.tag-blue{background:rgba(56,189,248,0.1);color:var(--blue);border:1px solid rgba(56,189,248,0.2)}
+.tag-green{background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.2)}
+.proj-arrow{color:var(--muted);font-size:1.1rem;padding-top:3px}
+.patent-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:var(--amber);font-size:.63rem;padding:2px 9px;border-radius:20px;font-family:'Space Mono',monospace;letter-spacing:1px}
+
+/* PATENT */
+.patent-card{background:linear-gradient(135deg,rgba(124,111,255,0.1),rgba(244,114,182,0.05));border:1px solid rgba(124,111,255,0.3);border-radius:18px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start}
+.patent-badge{background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:12px;padding:1rem;min-width:60px;text-align:center;font-size:2.2rem}
+.patent-tag{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--amber);font-family:'Space Mono',monospace;margin-bottom:.5rem}
+.patent-title{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.9rem;line-height:1.4}
+.patent-meta{display:flex;gap:1.2rem;flex-wrap:wrap}
+.meta-item{font-size:.78rem;color:var(--muted)}
+.meta-item span{color:var(--purple2)}
+.meta-item .granted{color:var(--green);font-weight:600}
+
+/* TIMELINE / EXPERIENCE */
+.timeline{position:relative;padding-left:1.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--purple),transparent)}
+.tl-item{position:relative;margin-bottom:1.5rem;padding-left:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.55rem;top:6px;width:8px;height:8px;border-radius:50%;background:var(--purple);box-shadow:0 0 10px var(--purple)}
+.tl-year{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--purple);letter-spacing:1px;margin-bottom:.3rem}
+.tl-title{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:.2rem}
+.tl-sub{font-size:.8rem;color:var(--muted)}
+
+/* EDUCATION */
+.edu-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:1.5rem;display:flex;align-items:center;gap:1.3rem}
+.edu-icon{font-size:2.4rem;min-width:52px;text-align:center}
+.edu-name{font-size:1rem;font-weight:600;color:#fff}
+.edu-degree{font-size:.82rem;color:var(--muted);margin-top:3px}
+.edu-year{font-family:'Space Mono',monospace;font-size:.78rem;color:var(--purple2);margin-top:6px}
+
+/* CONTACT */
+.contact-intro{font-size:.9rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.contact-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.2rem;display:flex;align-items:center;gap:12px;transition:all .2s;text-decoration:none;color:inherit}
+.contact-card:hover{border-color:var(--purple);transform:translateY(-3px)}
+.contact-icon{font-size:1.4rem;min-width:34px;text-align:center}
+.contact-label{font-size:.68rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;font-family:'Space Mono',monospace}
+.contact-val{font-size:.85rem;color:var(--text);font-weight:500}
+.contact-val.soon{color:var(--muted);font-style:italic;font-size:.8rem}
+
+/* FOOTER */
+footer{text-align:center;padding:4rem 0 2rem;color:var(--muted);font-size:.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;border-top:1px solid var(--border);margin-top:3rem}
+.footer-name{color:var(--purple2);font-weight:700}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* MOBILE */
+@media(max-width:620px){
+  .about-grid{grid-template-columns:1fr 1fr}
+  .patent-card{flex-direction:column}
+  .proj-card{grid-template-columns:auto 1fr}
+  .proj-arrow{display:none}
+  nav .nav-inner a{font-size:.65rem}
+  .nav-logo{display:none}
+}
+@media(max-width:420px){
+  nav{display:none}
+  .hero h1{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">GN</span>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#patent">Patent</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="avatar-ring">
+      <div class="avatar-inner">GN</div>
+    </div>
+    <div class="hero-eyebrow">Welcome to my universe</div>
+    <h1><span class="glow">Gaurav Negi</span></h1>
+    <div class="tagline">// Building the future, one commit at a time</div>
+    <div class="badges">
+      <span class="badge">Student</span>
+      <span class="badge">Freelancer</span>
+      <span class="badge">Developer</span>
+
+    </div>
+    <div class="cta-row">
+      <a class="btn-primary" href="#projects">View Projects</a>
+      <a class="btn-outline" href="#contact">Get in Touch</a>
+    </div>
+    <div class="scroll-hint">↓ scroll to explore</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section reveal" id="about">
+    <div class="sec-label">01 — who am i</div>
+    <div class="sec-title">About Me</div>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-stat">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div class="about-stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Granted Patent</div>
+      </div>
+      <div class="about-stat">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Years Coding</div>
+      </div>
+      <div class="about-stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Cups of Coffee</div>
+      </div>
+      <div class="about-text">
+        I'm a passionate developer and final-year student at VIPS-TC (2022–26), exploring the intersection of blockchain technology, full-stack web development, and mobile applications. I build real-world solutions — from cross-platform e-commerce apps to a <strong style="color:var(--purple2)">granted patented blockchain security system</strong>. I thrive on turning complex problems into elegant, functional products. Open to freelance opportunities, internships, and exciting collaborations.
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section reveal" id="skills">
+    <div class="sec-label">02 — what i know</div>
+    <div class="sec-title">Skills & Technologies</div>
+    <div class="divider"></div>
+    <div class="skills-grid" id="skills-grid"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section reveal" id="projects">
+    <div class="sec-label">03 — what i've built</div>
+    <div class="sec-title">Projects</div>
+    <div class="divider"></div>
+    <div class="proj-grid" id="proj-grid"></div>
+  </section>
+
+  <!-- PATENT -->
+  <section class="section reveal" id="patent">
+    <div class="sec-label">04 — intellectual property</div>
+    <div class="sec-title">Patent</div>
+    <div class="divider"></div>
+    <div class="patent-card">
+      <div class="patent-badge">📜</div>
+      <div style="flex:1">
+        <div class="patent-tag">Granted Patent — 2026</div>
+        <div class="patent-title">Blockchain-Based Secure Data Sharing Device</div>
+        <div class="patent-meta">
+          <div class="meta-item">Patent No. <span>497316-001</span></div>
+          <div class="meta-item">Inventor <span>Gaurav Negi</span></div>
+          <div class="meta-item">Filed <span>04/04/2026</span></div>
+          <div class="meta-item">Status <span class="granted">✓ Granted</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section reveal" id="experience">
+    <div class="sec-label">05 — journey</div>
+    <div class="sec-title">Experience & Timeline</div>
+    <div class="divider"></div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section reveal" id="education">
+    <div class="sec-label">06 — academic journey</div>
+    <div class="sec-title">Education</div>
+    <div class="divider"></div>
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-name">Vivekananda Institute of Professional Studies — TC</div>
+        <div class="edu-degree">Bachelor of Technology &nbsp;·&nbsp; Computer Science &amp; Engineering</div>
+        <div class="edu-year">2022 — 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section reveal" id="contact">
+    <div class="sec-label">07 — reach out</div>
+    <div class="sec-title">Contact Me</div>
+    <div class="divider"></div>
+    <p class="contact-intro">I'm currently open to freelance projects and exciting opportunities. Whether you have a project idea, a question, or just want to say hi — my inbox is always open.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="https://github.com/Gaurav-0990/Projects" target="_blank" rel="noopener">
+        <div class="contact-icon">⭐</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-val">Gaurav-0990</div>
+        </div>
+      </a>
+      <a class="contact-card" href="mailto:10217702722_cse@vips.edu">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">10217702722_cse@vips.edu</div>
+        </div>
+      </a>
+      <div class="contact-card">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val soon">Add your LinkedIn</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📱</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-val soon">Add your number</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div>Designed &amp; built by <span class="footer-name">Gaurav Negi</span> · 2026</div>
+  <div style="margin-top:.5rem;opacity:.5">Student · Freelancer · Developer 🚀</div>
+</footer>
+
+<script>
+const skills=[
+  {icon:'🪐',name:'C++',pct:80},
+  {icon:'🌿',name:'MongoDB',pct:75},
+  {icon:'⚡',name:'Express.js',pct:78},
+  {icon:'⚛️',name:'React',pct:82},
+  {icon:'🚀',name:'Node.js',pct:80},
+  {icon:'💙',name:'Flutter',pct:72},
+  {icon:'🔗',name:'Blockchain',pct:85},
+  {icon:'🌐',name:'HTML / CSS',pct:90},
+  {icon:'🗄️',name:'SQL',pct:68},
+  {icon:'🐙',name:'Git',pct:78},
+];
+
+const projects=[
+  {num:'01',title:'Flutter E-Commerce App',desc:'Cross-platform mobile shopping app with smooth UI, product listings, cart, and checkout — built entirely with Flutter and Dart.',tags:['Flutter','Dart','Firebase'],tcls:'tag-blue',featured:false},
+  {num:'02',title:'Web E-Commerce Platform',desc:'Full-stack MERN e-commerce website with product management, user authentication, and seamless checkout flow.',tags:['MongoDB','Express','React','Node.js'],tcls:'tag-purple',featured:false},
+  {num:'03',title:'Blockchain Secure Data Sharing',desc:'Patented blockchain-based device for tamper-proof, decentralized, and cryptographically secure data sharing between entities.',tags:['Blockchain','Security','Cryptography'],tcls:'tag-green',featured:true,patent:true},
+];
+
+const timeline=[
+  {year:'2026',title:'Patent Granted',sub:'Blockchain-Based Secure Data Sharing Device — Patent No. 497316-001'},
+  {year:'2024–25',title:'Freelance Developer',sub:'Built multiple client projects including e-commerce platforms'},
+  {year:'2023',title:'Started MERN Stack Development',sub:'Deep-dived into full-stack web development'},
+  {year:'2022',title:'Joined VIPS-TC',sub:'Started B.Tech in Computer Science & Engineering'},
+];
+
+// Render skills
+const sg=document.getElementById('skills-grid');
+skills.forEach(s=>{
+  const d=document.createElement('div');
+  d.className='skill-card';
+  d.innerHTML=`<div class="skill-icon">${s.icon}</div><div class="skill-name">${s.name}</div><div class="skill-bar-wrap"><div class="skill-bar" data-w="${s.pct}"></div></div>`;
+  sg.appendChild(d);
+});
+
+// Render projects
+const pg=document.getElementById('proj-grid');
+projects.forEach(p=>{
+  const tags=p.tags.map(t=>`<span class="tag ${p.tcls}">${t}</span>`).join('');
+  const patent=p.patent?`<span class="patent-pill">📜 Patented</span>`:'';
+  const d=document.createElement('div');
+  d.className='proj-card'+(p.featured?' featured':'');
+  d.innerHTML=`<div class="proj-num">${p.num}</div><div><div class="proj-title">${p.title} ${patent}</div><div class="proj-desc">${p.desc}</div><div class="proj-tags">${tags}</div></div><div class="proj-arrow">↗</div>`;
+  pg.appendChild(d);
+});
+
+// Render timeline
+const tl=document.getElementById('timeline');
+timeline.forEach(t=>{
+  const d=document.createElement('div');
+  d.className='tl-item';
+  d.innerHTML=`<div class="tl-year">${t.year}</div><div class="tl-title">${t.title}</div><div class="tl-sub">${t.sub}</div>`;
+  tl.appendChild(d);
+});
+
+// Stars canvas
+const canvas=document.getElementById('bg'),ctx=canvas.getContext('2d');
+let W,H,stars=[];
+function resize(){
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
+  stars=Array.from({length:220},()=>({
+    x:Math.random()*W,y:Math.random()*H,
+    r:Math.random()*1.6+.3,
+    a:Math.random()*.7+.15,
+    speed:Math.random()*.25+.04
+  }));
+}
+resize();
+window.addEventListener('resize',resize);
+function drawStars(){
+  ctx.clearRect(0,0,W,H);
+  stars.forEach(s=>{
+    s.y-=s.speed;
+    if(s.y<0){s.y=H;s.x=Math.random()*W;}
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(180,185,255,${s.a})`;ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+
+// Scroll reveal + skill bars
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('.skill-bar').forEach(b=>{
+        b.style.width=b.dataset.w+'%';
+      });
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+
+// Active nav highlight
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  navLinks.forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+cur?'var(--purple2)':'';
+  });
+},{passive:true});
+</script>
+</body>
+</html>
